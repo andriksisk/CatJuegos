@@ -1,0 +1,1 @@
+import{w as t}from"./BMES6g81.js";let r=null;{const e=localStorage.getItem("user");e&&(r=JSON.parse(e))}const s=t(r);s.subscribe(function(e){e?localStorage.setItem("user",JSON.stringify(e)):localStorage.removeItem("user")});export{s as u};
