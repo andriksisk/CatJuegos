@@ -13,7 +13,7 @@
 		try {
 			const data = await login(correo, password);
 			user.set(data);
-      		window.location.href = "/juegos";
+      		window.location.href = "juegos";
 		} catch (e) {
 			error = "Usuario o contraseña incorrectos";
 		}
@@ -36,7 +36,7 @@
 		<p class="error">{error}</p>
 	{/if}
 
-	<a class="crear" href="/register">Crear cuenta</a>
+	<a class="crear" href="register">Crear cuenta</a>
 
 </div>
 
