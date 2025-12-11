@@ -2,6 +2,7 @@
 
 <script>
   //@ts-nocheck
+  	import { base } from '$app/paths';
 	import { user } from "$lib/stores.js";
 	import { login } from "$lib/api";
 
@@ -13,7 +14,7 @@
 		try {
 			const data = await login(correo, password);
 			user.set(data);
-      		window.location.href = "juegos";
+      		window.location.href = `${base}/juegos`;
 		} catch (e) {
 			error = "Usuario o contraseña incorrectos";
 		}
@@ -36,7 +37,7 @@
 		<p class="error">{error}</p>
 	{/if}
 
-	<a class="crear" href="register">Crear cuenta</a>
+	<a class="crear" href="{base}/register">Crear cuenta</a>
 
 </div>
 
