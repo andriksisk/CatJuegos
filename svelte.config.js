@@ -5,15 +5,13 @@ const dev = process.env.NODE_ENV !== 'production';
 export default {
   kit: {
     adapter: adapter({
-      fallback: 'index.html',
-      strict: false
+      fallback: 'index.html'
     }),
-    appDir: 'app',
     paths: {
       base: dev ? '' : '/CatJuegos'
     },
     prerender: {
-      entries: []
+      entries: ['*']
     }
   }
 };
