@@ -1,17 +1,14 @@
-import adapter from '@sveltejs/adapter-static';
-
-const dev = process.env.NODE_ENV !== 'production';
+import adapterStatic from '@sveltejs/adapter-static';
 
 export default {
-  kit: {
-    adapter: adapter({
-      fallback: 'index.html'
-    }),
-    paths: {
-      base: dev ? '' : '/CatJuegos'
-    },
-    prerender: {
-      entries: ['*']
+    kit: {
+        adapter: adapterStatic(),
+        paths: {
+            base: process.env.NODE_ENV === 'production' ? '/CatJuegos' : ''
+        },
+        prerender: {
+            handleMissingId: 'ignore',
+            handleUnseenRoutes: 'ignore'
+        }
     }
-  }
 };
