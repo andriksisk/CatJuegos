@@ -1,6 +1,7 @@
 <!-- Vista de register -->
 
 <script>
+	import { base } from '$app/paths';
 	import { registerUser } from "$lib/api";
 
 	let nombre ="";
@@ -47,8 +48,8 @@
 	<input bind:value={contra} type="password" placeholder="Contraseña">
 
 	<button class="Bton" on:click={registrar}>Crear cuenta</button>
-	<a class="Regresar" href="/">Regresar</a>
-
+	<a class="Regresar" href="{base}/">Regresar</a>
+	
 	{#if msg}
 		<p class="exito">{msg}</p>
 	{/if}

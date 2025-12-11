@@ -2,6 +2,7 @@
 
 <script lang="ts">
 // @ts-nocheck
+	import { base } from '$app/paths';
 	import { page } from "$app/stores";
 	import { getJuego, getReviewsJuego, publicarReview, eliminarReview } from "$lib/api";
 	import { user } from "$lib/stores.js";
@@ -73,7 +74,7 @@
 		</div>
 		
 		<button class="BtonEnviar" on:click={enviar}>Enviar</button>
-		<a class="regresar" href="/juegos">Regresar</a>
+		<a class="regresar" href="{base}/juegos">Regresar</a>
 
 	</div>
 	

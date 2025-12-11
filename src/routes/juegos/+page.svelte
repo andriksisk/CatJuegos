@@ -1,5 +1,6 @@
 <!-- Parte de juegos vista -->
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { getJuegos, crearJuego, eliminarJuego} from "$lib/api";
 	import { onMount } from "svelte";
   
@@ -67,7 +68,7 @@
 			<p><strong>{j.desarrollador}</strong></p>
 			<p>Clasificación: {j.clasificacion}</p>
 
-			<a class="link" href={`/juegos/${j.idJuego}`}>Ver detalles</a>  
+			<a class="link" href="{base}/juegos/{j.idJuego}">Ver detalles</a>
 
 			<button class="eliminar" on:click={() => borrar(j.idJuego)}>Eliminar</button>
 		</div>
