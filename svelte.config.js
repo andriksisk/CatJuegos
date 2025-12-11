@@ -1,10 +1,12 @@
-import adapterStatic from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-static';
+
+const isVercel = process.env.VERCEL === "1";
 
 export default {
     kit: {
-        adapter: adapterStatic(),
+        adapter: adapter(),
         paths: {
-            base: process.env.NODE_ENV === 'production' ? '/CatJuegos' : ''
+            base: isVercel ? '' : '/CatJuegos'
         },
         prerender: {
             handleMissingId: 'ignore',
