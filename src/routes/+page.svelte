@@ -2,7 +2,6 @@
 
 <script>
   //@ts-nocheck
-  import { base } from '$app/paths';
 	import { user } from "$lib/stores.js";
 	import { login } from "$lib/api";
 
