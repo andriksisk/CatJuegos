@@ -2,13 +2,17 @@
 
 <script>
   //@ts-nocheck
+  //importación para que el usuario loggeado pueda guardarse localmente
 	import { user } from "$lib/stores.js";
+	//importación para hacer uso de la función login de nuestro api.js en esta vista
 	import { login } from "$lib/api";
 
 	let correo ="";
 	let password ="";
 	let error = "";
-
+	//función la cual nos permite entrar o no, dependiendo de la respuesta que se haga a nuestro api.js
+	//uso de funciones tipo "async" con "await" para evitar que aparezcan errores, la cual, su única finalidad es que, cada que hay un "await" es para que lo que
+	//siga, en este caso, "login(correo,password)" se termine de ejecutar al 100%, para después seguir con su proceso (o sea, que luego siga las siguientes líneas)
 	async function entrar() {
 		try {
 			const data = await login(correo, password);
@@ -31,7 +35,7 @@
 	<input type="password" bind:value={password} placeholder="Contraseña">
 
 	<button class="Bton" on:click={entrar}>Entrar</button>
-
+<!-- bloque #if, el cual, dependiendo de la variable error, puede o no mostrar visualmente el elemento tipo "p" -->
 	{#if error}
 		<p class="error">{error}</p>
 	{/if}

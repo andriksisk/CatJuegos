@@ -1,7 +1,9 @@
 <!-- Vista de register -->
 
 <script>
+	//importación para el correcto funcionamiento de VERCEL
 	import { base } from '$app/paths';
+	//importación para el uso de la función registerUser de nuestro archivo api.js en esta vista
 	import { registerUser } from "$lib/api";
 
 	let nombre ="";
@@ -13,6 +15,7 @@
 	async function registrar() {
 		msg ="";
 		error ="";
+		//evaluar que los campos no estén vacios
 		if(!nombre || !correo||!contra){
 			error ="No se ha podido registrar";
 			return;

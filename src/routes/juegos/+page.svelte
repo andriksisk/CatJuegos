@@ -2,8 +2,10 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { getJuegos, crearJuego, eliminarJuego} from "$lib/api";
+	//importación para el uso de la función onMount
 	import { onMount } from "svelte";
   
+	//creación del tipo juego
 	type Juego = {
     idJuego: number;
     nombre: string;
@@ -11,14 +13,14 @@
     desarrollador: string;
     clasificacion: string;
     };
-
+	//creación de la variable de tipo array que comienza vacia, el cual va a obtener objetos tipos Juego
     let juegos: Juego[] = [];
 
     let nombre ="";
 	let descripcion ="";
 	let desarrollador ="";
 	let clasificacion ="";
-
+// Espera a que se completen el cargado de los componentes para después la ejecución de esta función 
 	onMount(async function() {
 		juegos = await getJuegos();
 	});
@@ -28,7 +30,7 @@
 			alert("Todos los campos son obligatorios.");
 			return;
 		}
-
+		//uso de funciones enviando variables para crear un nuevo juego
 		await crearJuego(nombre, descripcion, desarrollador, clasificacion);
     	juegos = await getJuegos();
 
@@ -61,6 +63,7 @@
 </div>
 
 <div class="marco">
+	<!-- Muestra o no, dependiendo de nuestra variable "juegos" visualmente -->
 	{#each juegos as j}
 		<div class="Mseleccion">
 			<h3>{j.nombre}</h3>

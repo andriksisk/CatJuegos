@@ -2,9 +2,12 @@
 
 <script lang="ts">
 // @ts-nocheck
+//primeras 2 importaciones necesarias para el correcto funcionamiento de VERCEL 
 	import { base } from '$app/paths';
 	import { page } from "$app/stores";
+// importaciones de las funciones que se van a ocupar en esta vista de nuestro archivo api.js
 	import { getJuego, getReviewsJuego, publicarReview, eliminarReview } from "$lib/api";
+//importar el usuario previamente cargado para la creación de nuestra review
 	import { user } from "$lib/stores.js";
 
 	let juego = null;
@@ -20,12 +23,12 @@
 	$: if (idJuego) {   
 		cargarDatos();
 	}
-
+//función para que carguen las reseñas y la información del juego en la vista
 	async function cargarDatos() {
 		juego = await getJuego(idJuego);
 		reseñas = await getReviewsJuego(idJuego);
 	}
-
+//función enviar, el cual nos permite crear una nueva review
 	async function enviar() {
 		if (!$user) {
 			alert("Debes iniciar sesión para publicar una reseña.");
@@ -36,7 +39,7 @@
 			alert("Debe llenar todos los campos");
 			return;
 		}
-
+		//función para llamar a nuestro api.js
 		await publicarReview(idJuego, $user.idUsuario, rating, encabezado, texto);
 		reseñas = await getReviewsJuego(idJuego);
 		encabezado = "";
@@ -51,7 +54,7 @@
 		await cargarDatos(); 
 	}
 </script>
-
+<!-- uso del bloque #if, el cual nos permite mostrar o no visualmente si juego contiene algo. Es decir, dependiendo de juego puede que muestre el html -->
 {#if juego}
 	<h1 class="titulo">{juego.nombre}</h1>
 
@@ -59,6 +62,7 @@
 
 		<p class="info">{juego.descripcion}</p>
 		<h2 class="reselas">Reseñas</h2>
+		<!-- por cada reseña obtenida se crea sus respectivos elementos (ej. boton elimijnar, el encabezado, texto, etc..) -->
 		{#each reseñas as r}
 			<div class="review">
 				<strong>{r.encabezado}</strong> ===> {r.rating}/5 ⭐
@@ -79,7 +83,7 @@
 	</div>
 	
 {/if}
-
+<!-- CSS ocupado para la vista de reseñas -->
 <style>
 	:global(body) {
 		margin: 0;
